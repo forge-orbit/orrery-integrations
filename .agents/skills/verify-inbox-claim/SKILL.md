@@ -27,7 +27,7 @@ Each bridge runs all combinations of nine replacement schedules, four question o
 - `resume_work_session` reports the live claim or the expired original. A different session or a stop request does not trigger a renewal.
 - `call` sends `renew_claim` with the work-session ID from the original wait request. Model the server as comparing that ID against the live claim when renewal applies. The fixture treats an omitted ID as an unfenced renewal, as documented by the server contract.
 
-The check covers one wait, at most one replacement, and the protocol boundary. The real server's database transaction, clock, and lease expiry are outside this check. Run [installed-package verification](../../../.cursor/skills/verify-orrery-integrations/SKILL.md) for the real inbox path. Use Orrery's formal skill for the server's claims and leases.
+The check covers one wait, at most one replacement, and the protocol boundary. The real server's database transaction, clock, and lease expiry are outside this check. Run [installed-package verification](../verify-orrery-integrations/SKILL.md) for the real inbox path. Use Orrery's formal skill for the server's claims and leases.
 
 ## Prove the check catches a break
 

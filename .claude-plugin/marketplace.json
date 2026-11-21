@@ -1,19 +1,19 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
-  "name": "orrery",
+  "name": "forge-orbit",
   "owner": {
     "name": "Forge Orbit",
     "url": "https://github.com/forge-orbit"
   },
   "metadata": {
     "description": "Official Orrery agent harness plugins for Claude Code.",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   "plugins": [
     {
       "name": "orrery",
       "description": "Connect Claude Code to Orrery: automatic run lifecycle reporting via hooks and static /mcp project tools.",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "source": "./harnesses/claude-code"
     }
   ]

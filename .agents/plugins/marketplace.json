@@ -1,13 +1,13 @@
 {
-  "name": "orrery",
+  "name": "forge-orbit",
   "interface": {
-    "displayName": "Orrery Integrations"
+    "displayName": "Forge Orbit"
   },
   "plugins": [
     {
       "name": "orrery",
       "description": "Connect Codex CLI to Orrery: automatic run lifecycle reporting via hooks and static /mcp project tools.",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "source": {
         "source": "local",
         "path": "./harnesses/codex"
