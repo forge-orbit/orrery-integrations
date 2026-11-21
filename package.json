@@ -1,0 +1,18 @@
+{
+  "name": "@forge-orbit/orrery-integrations",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Installable agent harness plugins and integrations for Orrery.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/forge-orbit/orrery-integrations.git"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test harnesses/*/scripts/*.test.mjs scripts/*.test.mjs"
+  }
+}

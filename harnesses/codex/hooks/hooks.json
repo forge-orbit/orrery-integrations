@@ -1,0 +1,75 @@
+{
+  "description": "Report Codex CLI run lifecycle events to Orrery",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CODEX_PLUGIN_ROOT}/scripts/report-hook.mjs\""
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CODEX_PLUGIN_ROOT}/scripts/report-hook.mjs\""
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CODEX_PLUGIN_ROOT}/scripts/report-hook.mjs\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CODEX_PLUGIN_ROOT}/scripts/report-hook.mjs\""
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CODEX_PLUGIN_ROOT}/scripts/report-hook.mjs\""
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CODEX_PLUGIN_ROOT}/scripts/report-hook.mjs\""
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CODEX_PLUGIN_ROOT}/scripts/report-hook.mjs\""
+          }
+        ]
+      }
+    ]
+  }
+}
