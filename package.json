@@ -1,6 +1,6 @@
 {
   "name": "@forge-orbit/orrery-integrations",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
   "description": "Installable agent harness plugins and integrations for Orrery.",
@@ -13,6 +13,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "test": "node --test harnesses/*/scripts/*.test.mjs scripts/*.test.mjs"
+    "test": "node --test harnesses/*/scripts/*.test.mjs scripts/*.test.mjs",
+    "smoke:installed": "node scripts/smoke-installed.mjs"
   }
 }

@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "orrery": {
+      "command": "node",
+      "args": ["./scripts/mcp-stdio.mjs"],
+      "cwd": ".",
+      "env_vars": [
+        "ORRERY_URL",
+        "ORRERY_API_KEY",
+        "ORRERY_API_KEY_FILE",
+        "ORRERY_AGENT_KEY",
+        "ORRERY_AGENT_KEY_FILE"
+      ]
+    }
+  }
+}

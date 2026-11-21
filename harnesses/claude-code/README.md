@@ -4,6 +4,8 @@ Bundles Orrery run-lifecycle reporting hooks and the static `/mcp` server config
 
 ## Install
 
+Requires Node.js 22 or later.
+
 1. Export your Orrery server URL and workspace-scoped agent API key in the shell environment Claude Code inherits:
 
    ```sh
@@ -22,7 +24,8 @@ Bundles Orrery run-lifecycle reporting hooks and the static `/mcp` server config
 ## What's Included
 
 - **Lifecycle hooks** (`hooks/hooks.json` -> `scripts/report-hook.mjs`): reports `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `Stop`, `SubagentStop`, and `SessionEnd` to `POST /api/runs/hook` (`orrery.run.hook.v1`).
-- **Static MCP server** (`.mcp.json`): connects Claude Code to `${ORRERY_URL}/mcp` with `Authorization: Bearer ${ORRERY_API_KEY}`.
+- **Orrery MCP** (`.mcp.json`) runs the bundled Node.js transport and connects to the configured Orrery instance. Both the transport and the hooks accept an inline API key or a key file.
+- **Inbox replies** use `orrery_wait_for_input` to wait inside the running harness after `ask_for_input`. The tool checks for the answer and renews the matching lease when needed.
 
 ## Environment Variables
 

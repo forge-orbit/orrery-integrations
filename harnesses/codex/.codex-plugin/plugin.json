@@ -1,6 +1,6 @@
 {
   "name": "orrery",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Connect Codex CLI to Orrery: automatic run lifecycle reporting via hooks and static /mcp project tools.",
   "author": {
     "name": "Forge Orbit",
@@ -9,5 +9,7 @@
   "homepage": "https://github.com/forge-orbit/orrery",
   "repository": "https://github.com/forge-orbit/orrery-integrations",
   "license": "MIT",
-  "keywords": ["orrery", "mcp", "project-management", "runs", "hooks"]
+  "keywords": ["orrery", "mcp", "project-management", "runs", "hooks"],
+  "mcpServers": "./.mcp.json",
+  "hooks": "./hooks/hooks.json"
 }

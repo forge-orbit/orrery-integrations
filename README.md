@@ -39,11 +39,20 @@ See [`harnesses/claude-code/README.md`](harnesses/claude-code/README.md) for det
 
 ### Codex CLI
 
-Clone or add this repository as a Codex marketplace, then install the `orrery` plugin from `/plugins` and trust its lifecycle hooks in `/hooks`.
+```sh
+codex plugin marketplace add forge-orbit/orrery-integrations
+codex plugin add orrery@orrery
+```
+
+Open `/hooks` in Codex to review and trust the installed lifecycle hooks. Both plugins need Node.js 22+ on the machine running the harness.
 
 > **Note:** OpenAI restricts plugins containing lifecycle hooks from the public cloud directory, so the Codex plugin is installed from this repository or a local clone.
 
 See [`harnesses/codex/README.md`](harnesses/codex/README.md) for details.
+
+## Inbox replies
+
+When a claimed issue needs a human decision, the agent calls `ask_for_input` and then `orrery_wait_for_input`. The installed plugin waits for the inbox response and renews the matching claim when needed. Each wait lasts up to 20 seconds under normal network conditions. If the question is still open, the harness can call again in the same turn. Keep the harness running while waiting. If you exit it, resume the conversation to continue.
 
 ## Privacy & Failure Behaviour
 
@@ -55,7 +64,16 @@ See [`harnesses/codex/README.md`](harnesses/codex/README.md) for details.
 Requires Node.js 22+ (zero external dependencies):
 
 ```sh
-npm test
+pnpm test
+```
+
+The two installed packages each carry a copy of the MCP transport. Keep the copies identical when editing it. The tests check the packaged entry points and reject drift.
+
+Run the fresh-install smoke test before releasing. It needs Codex and Claude Code CLI sign-in, a disposable Orrery instance with a scoped agent key, and a file containing the test human's `email` and `password` as JSON. The command installs each checkout package into a temporary marketplace, drives real MCP and inbox calls, checks lifecycle reporting, and removes the temporary installs.
+
+```sh
+export ORRERY_SMOKE_HUMAN_FILE=/path/to/disposable/human.json
+pnpm run smoke:installed WORKSPACE_ID PROJECT_ID
 ```
 
 ## License

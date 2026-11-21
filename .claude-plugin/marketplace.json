@@ -7,13 +7,13 @@
   },
   "metadata": {
     "description": "Official Orrery agent harness plugins for Claude Code.",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   "plugins": [
     {
       "name": "orrery",
       "description": "Connect Claude Code to Orrery: automatic run lifecycle reporting via hooks and static /mcp project tools.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "source": "./harnesses/claude-code"
     }
   ]

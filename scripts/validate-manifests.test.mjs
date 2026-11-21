@@ -60,14 +60,13 @@ test("Codex marketplace and plugin manifests are valid and consistent", () => {
     const pluginDir = resolve(ROOT, entry.source.path);
     assert.ok(existsSync(pluginDir), `plugin source missing: ${entry.source.path}`);
 
-    const manifest = readJson(`${entry.source.path}/plugin.json`);
-    const compatManifest = readJson(`${entry.source.path}/.codex-plugin/plugin.json`);
+    const manifest = readJson(`${entry.source.path}/.codex-plugin/plugin.json`);
     assert.equal(manifest.name, entry.name);
-    assert.equal(compatManifest.name, entry.name);
     assert.equal(manifest.version, entry.version);
-    assert.equal(compatManifest.version, entry.version);
+    assert.equal(manifest.mcpServers, "./.mcp.json");
+    assert.equal(manifest.hooks, "./hooks/hooks.json");
 
-    const mcp = readJson(`${entry.source.path}/mcp.json`);
+    const mcp = readJson(`${entry.source.path}/${manifest.mcpServers}`);
     assert.ok(mcp.mcpServers && mcp.mcpServers.orrery, "expected mcpServers.orrery");
 
     const hooks = readJson(`${entry.source.path}/hooks/hooks.json`);
@@ -77,12 +76,20 @@ test("Codex marketplace and plugin manifests are valid and consistent", () => {
         for (const h of group.hooks) {
           assert.equal(h.type, "command", `${eventName} hook must be a command`);
           assert.ok(
-            h.command.includes("${CODEX_PLUGIN_ROOT}/scripts/report-hook.mjs"),
-            `${eventName} hook must reference \${CODEX_PLUGIN_ROOT}/scripts/report-hook.mjs`,
+            h.command.includes("${PLUGIN_ROOT}/scripts/report-hook.mjs"),
+            `${eventName} hook must reference \${PLUGIN_ROOT}/scripts/report-hook.mjs`,
           );
         }
       }
     }
     assert.ok(existsSync(resolve(pluginDir, "scripts/report-hook.mjs")));
   }
+});
+
+test("both installable packages carry the same MCP transport", () => {
+  const script = "scripts/mcp-stdio.mjs";
+  assert.deepEqual(
+    readFileSync(resolve(ROOT, "harnesses/codex", script)),
+    readFileSync(resolve(ROOT, "harnesses/claude-code", script)),
+  );
 });

@@ -7,7 +7,7 @@
     {
       "name": "orrery",
       "description": "Connect Codex CLI to Orrery: automatic run lifecycle reporting via hooks and static /mcp project tools.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "source": {
         "source": "local",
         "path": "./harnesses/codex"
