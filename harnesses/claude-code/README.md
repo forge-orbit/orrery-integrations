@@ -18,7 +18,7 @@ Requires Node.js 22 or later.
 
    ```text
    /plugin marketplace add forge-orbit/orrery-integrations
-   /plugin install orrery@orrery
+   /plugin install orrery@forge-orbit
    ```
 
 ## What's Included

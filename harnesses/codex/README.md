@@ -18,7 +18,7 @@ Requires Node.js 22 or later.
 
    ```sh
    codex plugin marketplace add forge-orbit/orrery-integrations
-   codex plugin add orrery@orrery
+   codex plugin add orrery@forge-orbit
    ```
 3. Open `/hooks` in Codex to review and trust the plugin's lifecycle hooks.
 

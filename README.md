@@ -32,7 +32,7 @@ export ORRERY_API_KEY="orr_ak_..."
 
 ```text
 /plugin marketplace add forge-orbit/orrery-integrations
-/plugin install orrery@orrery
+/plugin install orrery@forge-orbit
 ```
 
 See [`harnesses/claude-code/README.md`](harnesses/claude-code/README.md) for details.
@@ -41,7 +41,7 @@ See [`harnesses/claude-code/README.md`](harnesses/claude-code/README.md) for det
 
 ```sh
 codex plugin marketplace add forge-orbit/orrery-integrations
-codex plugin add orrery@orrery
+codex plugin add orrery@forge-orbit
 ```
 
 Open `/hooks` in Codex to review and trust the installed lifecycle hooks. Both plugins need Node.js 22+ on the machine running the harness.
@@ -49,6 +49,26 @@ Open `/hooks` in Codex to review and trust the installed lifecycle hooks. Both p
 > **Note:** OpenAI restricts plugins containing lifecycle hooks from the public cloud directory, so the Codex plugin is installed from this repository or a local clone.
 
 See [`harnesses/codex/README.md`](harnesses/codex/README.md) for details.
+
+## Switch from the previous marketplace
+
+Both CLIs now install the plugin as `orrery@forge-orbit`. If you installed `orrery@orrery`, remove the old plugin and marketplace before running Quick Install again.
+
+For Codex:
+
+```sh
+codex plugin remove orrery@orrery
+codex plugin marketplace remove orrery
+```
+
+For Claude Code:
+
+```sh
+claude plugin uninstall orrery@orrery --keep-data
+claude plugin marketplace remove orrery
+```
+
+Your Orrery URL and agent key work with the new install. Review and trust the new plugin's hooks in Codex.
 
 ## Inbox replies
 

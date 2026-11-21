@@ -19,7 +19,11 @@ const market = `orrery-smoke-${randomUUID().slice(0, 8)}`;
 const plugin = `orrery@${market}`;
 const work = join(dir, "work");
 const trace = join(dir, "codex-hooks.jsonl");
-const pruneOriginal = ["-c", 'plugins."orrery@orrery".enabled=false'];
+const publishedPlugins = ["orrery@forge-orbit", "orrery@orrery"];
+const codexPluginOverrides = publishedPlugins.flatMap((id) => ["-c", `plugins."${id}".enabled=false`]);
+const claudePluginOverrides = JSON.stringify({
+  enabledPlugins: Object.fromEntries(publishedPlugins.map((id) => [id, false])),
+});
 
 function cli(command, args, env = process.env) {
   const result = spawnSync(command, args, { cwd: work, env, encoding: "utf8", timeout: 120_000 });
@@ -45,7 +49,7 @@ async function api(path, body) {
 }
 
 async function checkCodexMcp() {
-  const child = spawn("codex", ["app-server", ...pruneOriginal], {
+  const child = spawn("codex", ["app-server", ...codexPluginOverrides], {
     cwd: work,
     stdio: ["pipe", "pipe", "ignore"],
     signal: AbortSignal.timeout(100_000),
@@ -116,7 +120,7 @@ async function checkCodexMcp() {
 }
 
 async function checkCodexHooks() {
-  const events = parseLines(cli("codex", ["-a", "never", "-s", "read-only", ...pruneOriginal,
+  const events = parseLines(cli("codex", ["-a", "never", "-s", "read-only", ...codexPluginOverrides,
     "exec", "--ephemeral", "--json", "--skip-git-repo-check", "--dangerously-bypass-hook-trust",
     "Reply with OK. Do not call any tools."], { ...process.env, ORRERY_HOOK_TRACE: trace }));
   const thread = events.find((event) => event.type === "thread.started").thread_id;
@@ -130,6 +134,7 @@ async function checkClaude() {
   const name = "mcp__plugin_orrery_orrery__list_projects";
   const events = parseLines(cli("claude", ["-p",
     `Call only ${name} for workspace ${workspaceId}. Then report the project names.`,
+    "--settings", claudePluginOverrides,
     "--output-format", "stream-json", "--verbose", "--tools", "", "--allowedTools", name]));
   const init = events.find((event) => event.type === "system" && event.subtype === "init");
   const content = events.flatMap((event) => event.message?.content ?? []);

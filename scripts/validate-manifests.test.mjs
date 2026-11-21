@@ -15,11 +15,11 @@ function readJson(relPath) {
 
 test("Claude Code marketplace and plugin manifests are valid and consistent", () => {
   const marketplace = readJson(".claude-plugin/marketplace.json");
-  assert.equal(typeof marketplace.name, "string");
+  assert.equal(marketplace.name, "forge-orbit");
   assert.ok(Array.isArray(marketplace.plugins) && marketplace.plugins.length >= 1);
 
   for (const entry of marketplace.plugins) {
-    assert.equal(typeof entry.name, "string");
+    assert.equal(entry.name, "orrery");
     assert.equal(typeof entry.source, "string");
     const pluginDir = resolve(ROOT, entry.source);
     assert.ok(existsSync(pluginDir), `plugin source missing: ${entry.source}`);
@@ -50,11 +50,11 @@ test("Claude Code marketplace and plugin manifests are valid and consistent", ()
 
 test("Codex marketplace and plugin manifests are valid and consistent", () => {
   const marketplace = readJson(".agents/plugins/marketplace.json");
-  assert.equal(typeof marketplace.name, "string");
+  assert.equal(marketplace.name, "forge-orbit");
   assert.ok(Array.isArray(marketplace.plugins) && marketplace.plugins.length >= 1);
 
   for (const entry of marketplace.plugins) {
-    assert.equal(typeof entry.name, "string");
+    assert.equal(entry.name, "orrery");
     assert.equal(entry.source?.source, "local");
     assert.equal(typeof entry.source?.path, "string");
     const pluginDir = resolve(ROOT, entry.source.path);

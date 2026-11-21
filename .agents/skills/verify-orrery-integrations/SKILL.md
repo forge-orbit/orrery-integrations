@@ -10,7 +10,7 @@ Run from the integrations repo root. Use the installed CLI packages and an isola
 ## Run the full check
 
 ```sh
-.cursor/skills/verify-orrery-integrations/scripts/verify.sh run
+.agents/skills/verify-orrery-integrations/scripts/verify.sh run
 ```
 
 The full check runs all four stages below in one invocation and cleans up on exit. Capture the printed `RUN_DIR` for evidence.
@@ -20,7 +20,7 @@ The full check runs all four stages below in one invocation and cleans up on exi
 Use a sibling `orrery` checkout with its dependencies installed via `pnpm install`. The launcher reuses its `verify-orrery` scripts. Use Linux, Node 26 for the Orrery server, Bash, Docker, `pnpm`, `openssl`, `curl`, `ss`, and `setsid`. Sign in to Codex and Claude Code before the drive. The smoke test temporarily installs each package using the CLI's active user configuration.
 
 ```sh
-verify=.cursor/skills/verify-orrery-integrations/scripts/verify.sh
+verify=.agents/skills/verify-orrery-integrations/scripts/verify.sh
 "$verify" up
 ```
 
