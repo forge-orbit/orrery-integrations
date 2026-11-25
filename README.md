@@ -50,26 +50,6 @@ Open `/hooks` in Codex to review and trust the installed lifecycle hooks. Both p
 
 See [`harnesses/codex/README.md`](harnesses/codex/README.md) for details.
 
-## Switch from the previous marketplace
-
-Both CLIs now install the plugin as `orrery@forge-orbit`. If you installed `orrery@orrery`, remove the old plugin and marketplace before running Quick Install again.
-
-For Codex:
-
-```sh
-codex plugin remove orrery@orrery
-codex plugin marketplace remove orrery
-```
-
-For Claude Code:
-
-```sh
-claude plugin uninstall orrery@orrery --keep-data
-claude plugin marketplace remove orrery
-```
-
-Your Orrery URL and agent key work with the new install. Review and trust the new plugin's hooks in Codex.
-
 ## Inbox replies
 
 When a claimed issue needs a human decision, the agent calls `ask_for_input` and then `orrery_wait_for_input`. The installed plugin waits for the inbox response and renews the matching claim when needed. Each wait lasts up to 20 seconds under normal network conditions. If the question is still open, the harness can call again in the same turn. Keep the harness running while waiting. If you exit it, resume the conversation to continue.
